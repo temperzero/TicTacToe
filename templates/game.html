@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Game Page{% endblock %}
+
+{% block head %}
+{% if not victory and not lose and not draw%}
+<meta http-equiv="refresh" content="5">
+{% endif %}
+<style>
+	#Board {
+		padding: 5px;
+		border-collapse: separate;
+	}
+</style>
+{% endblock %}
+
+
+
+{% block body %}
+<h1>TicTacToe</h1>
+<div>
+	{% if victory %}
+	<h1>VICTORY</h1>
+	{% endif %}
+
+	{% if lose %}
+	<h1>LOSE</h1>
+	{% endif %}
+
+	{% if draw %}
+	<h1>DRAW</h1>
+	{% endif %}
+
+	{% if illegalmove %}
+	<h1>Illegal move</h1>
+	{% endif %}
+
+	{% if illegalinput %}
+	<h1>Illegal input</h1>
+	{% endif %}
+
+	{% if illegalturn %}
+	<h1>This is not your turn</h1>
+	{% endif %}
+
+	{% if error %}
+	<h1>Unexpected error</h1>
+	{% endif %}
+
+	{% if msg %}
+	<h1>{{msg}}</h1>
+	{% endif %}
+</div>
+<div id="playerinfo">
+	{% if not victory and not lose and not msg and not draw%}
+	<h3>Your Player Details</h3>
+	<h3>Player Number: {{playernumber}}</h3>
+	<h3>Player Symbol: {{playersymbol}}</h3>
+	<h3>Current player's turn: {{currentplayer}}</h3>
+	{% endif %}
+</div>
+<div id="Board">
+	{% for cell in table %}
+		<p>{{cell}}</p>
+	{% endfor %}
+</div>
+<div>
+	{% if not victory and not error and not msg and not lose and not draw%}
+	<form action="#" method="post"> 
+		<input type="text" name="row" placeholder="enter row">
+		<input type="text" name="col" placeholder="enter column">
+		<input type="submit" value="make move">
+	</form>
+	{% endif %}
+	{% if victory or lose or draw%}
+		<h3>Game over</h3>
+	{% endif %}
+</div>
+{% endblock %}

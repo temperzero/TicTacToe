@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<style>
+	#Board {
+		padding: 5px;
+		border-collapse: separate;
+	}
+</style>
+{% endblock %}
+
+
+
+{% block body %}
+<h1>TicTacToe</h1>
+<div>
+	{% if victory %}
+	<h1>VICTORY MOTHERFUCKER</h1>
+	{% endif %}
+</div>
+<div id="playerinfo">
+	<h3>Player Symbol: {{playernumber}}</h3>
+	<h3>Player Symbol: {{playersymbol}}</h3>
+	<h3>Current player's turn: {{currentplayer}}</h3>
+</div>
+<div id="Board">
+	{% for cell in table %}
+		<p>{{cell}}</p>
+	{% endfor %}
+</div>
+<div>
+	<form action="#" method="post"> 
+		<input type="text" name="row" placeholder="enter row">
+		<input type="text" name="col" placeholder="enter column">
+		<input type="submit" value="make move">
+	</form>
+
+
+</div>
+{% endblock %}
